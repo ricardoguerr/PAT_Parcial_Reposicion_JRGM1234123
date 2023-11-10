@@ -20,7 +20,7 @@ env:
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Release
 
-  OUTPUT_EXE: PAT_Parcial_Reposicion.exe
+  OUTPUT_EXE: PAT_Tests_Parcial_Reposicion.exe
 
   E01_MAX_GRADE: 50
   E01_LOG_FILE: E01results.log
