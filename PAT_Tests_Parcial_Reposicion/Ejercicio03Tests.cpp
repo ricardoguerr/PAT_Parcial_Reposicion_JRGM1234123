@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <unordered_set>
 
 #include "../PAT_Parcial_Reposicion/Node.h"
 #include "../PAT_Parcial_Reposicion/Ejercicio03.h"
@@ -14,6 +15,7 @@ using ::testing::ValuesIn;
 using ::std::tuple;
 using ::std::string;
 using ::std::vector;
+using ::std::unordered_set;
 
 namespace PRTests {
 	class E03Tests : public TestWithParam<tuple<int, vector<int>>> {
@@ -61,6 +63,7 @@ namespace PRTests {
 
 	TEST_P(E03Tests, E03Ciclo) {
 		vector<Node<int>*> nodes;
+		unordered_set<Node<int>*> set;
 
 		Node<int>* l1 = nullptr;
 		Node<int>** it = &l1;
@@ -68,6 +71,7 @@ namespace PRTests {
 		for (int i : list) {
 			*it = new Node<int>{ i };
 			nodes.push_back(*it);
+			set.insert(*it);
 			it = &((*it)->next);
 		}
 
@@ -83,7 +87,7 @@ namespace PRTests {
 			<< "] de la posicion de la lista [" << pos
 			<< "], pero se encontro [" << (result ? std::to_string(result->value) : "nullptr") << "].";)
 
-		
+		EXPECT_TRUE(!expectedNode || set.find(expectedNode) != set.end()) << "El nodo encontrado no pertenece a la lista original.";
 	}
 
 	INSTANTIATE_TEST_CASE_P(E03Ciclo, E03Tests, ValuesIn(E03Tests::GetParams()));
