@@ -75,10 +75,15 @@ namespace PRTests {
 
 		*it = expectedNode;
 
-		Node<int>* result = e03->detectCycle(l1);
+		ASSERT_DURATION_LE(1500,
+			Node<int>*result = e03->detectCycle(l1);
 
-		EXPECT_EQ(expectedNode, result) << "El nodo encontrado no coincide con el nodo del resultado.\n" 
-				<< "Se esperaba [" << (expectedNode ? std::to_string(expectedNode->value) : "nullptr") << "] de la posicion de la lista [" << pos << "], pero se encontro [" << (result ? std::to_string(result->value) : "nullptr") << "].";
+		EXPECT_EQ(expectedNode, result) << "El nodo encontrado no coincide con el nodo del resultado.\n"
+			<< "Se esperaba [" << (expectedNode ? std::to_string(expectedNode->value) : "nullptr") 
+			<< "] de la posicion de la lista [" << pos
+			<< "], pero se encontro [" << (result ? std::to_string(result->value) : "nullptr") << "].";)
+
+		
 	}
 
 	INSTANTIATE_TEST_CASE_P(E03Ciclo, E03Tests, ValuesIn(E03Tests::GetParams()));
