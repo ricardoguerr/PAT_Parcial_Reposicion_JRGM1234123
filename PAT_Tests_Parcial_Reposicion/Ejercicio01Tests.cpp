@@ -87,7 +87,11 @@ namespace PRTests {
 		Node<int>* l1 = buildList(n1);
 		Node<int>* l2 = buildList(n2);
 
-		Node<int>* head = e01->addTwoNumbers(l1, n1.length(), l2, n2.length());
+		Node<int>* head = nullptr;
+
+		ASSERT_DURATION_LE(100,
+			head = e01->addTwoNumbers(l1, n1.length(), l2, n2.length()););
+
 		Node<int>* expectedHead = buildList(expectedResult);
 
 		string expectedNumber = buildFromList(expectedHead);
